@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+option go_package = "grpc-server/proto";
+package interaccion;
+
+service CazarrecompensasService {
+    rpc ConsultarPiratas (Empty) returns (ListaPiratas);
+    rpc RegistrarCaptura (EntregaRequest) returns (EntregaResponse);
+    rpc DecidirEntrega (EntregaRequest) returns (EntregaResponse);
+    rpc TransportarPirata (TransporteRequest) returns (TransporteResponse);
+}
+
+service MarinaService {
+    rpc RecibirPirata (EntregaRequest) returns (EntregaResponse);
+    rpc RealizarRedada (RedadaRequest) returns (RedadaResponse);
+}
+
+service SubmundoService {
+    rpc ComprarPirata (EntregaRequest) returns (EntregaResponse);
+    rpc EnviarMercenarios (EntregaRequest) returns (RedadaResponse);
+}
+
+service GobiernoService {
+    rpc PublicarListaPiratas (Empty) returns (ListaPiratas);
+    rpc RegistrarCaptura (EntregaRequest) returns (EntregaResponse);
+    rpc ActualizarReputacion (ReputacionRequest) returns (ReputacionResponse);
+    rpc EmitirAlerta (AlertaRequest) returns (AlertaResponse);
+}
+
+message Empty {}
+
+message Pirata {
+    string id = 1;
+    string nombre = 2;
+    int32 recompensa = 3;
+    string nivel_peligrosidad = 4;
+    string estado = 5;
+}
+
+message ListaPiratas {
+    repeated Pirata piratas = 1;
+}
+
+message EntregaRequest {
+    string id_pirata = 1;
+    string destino = 2;
+    string cazarrecompensas_id = 3;
+}
+
+message EntregaResponse {
+    bool exito = 1;
+    string mensaje = 2;
+    int32 recompensa = 3;
+}
+
+message RedadaRequest {
+    string region = 1;
+}
+
+message RedadaResponse {
+    bool exito = 1;
+    string mensaje = 2;
+}
+
+message ReputacionRequest {
+    string cazarrecompensas_id = 1;
+    int32 cambio = 2;
+}
+
+message ReputacionResponse {
+    bool exito = 1;
+    string mensaje = 2;
+}
+
+message AlertaRequest {
+    string mensaje = 1;
+}
+
+message AlertaResponse {
+    bool exito = 1;
+    string mensaje = 2;
+}
+
+message TransporteRequest {
+    string id_pirata = 1;
+    string destino = 2;
+}
+
+message TransporteResponse {
+    bool exito = 1;
+    string mensaje = 2;
+}

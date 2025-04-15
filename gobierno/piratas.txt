@@ -1,0 +1,3 @@
+001,Arlong,20000000,Bajo,Buscado
+002,Crocodile,181000000,Medio,Capturado
+003,Eustass Kid,515000000,Alto,Buscado
