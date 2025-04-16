@@ -26,19 +26,19 @@ func main() {
 	// Inicializar el mapa reputacion
 	reputacion = make(map[string]int)
 
-	connGobierno, err := grpc.Dial("gobierno:50052", grpc.WithInsecure())
+	connGobierno, err := grpc.Dial("10.35.168.23:50052", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Error al conectar al servidor del Gobierno Mundial: %v", err)
 	}
 	defer connGobierno.Close()
 
-	connMarina, err := grpc.Dial("marina:50051", grpc.WithInsecure())
+	connMarina, err := grpc.Dial("10.35.168.24:50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Error al conectar al servidor de la Marina: %v", err)
 	}
 	defer connMarina.Close()
 
-	connSubmundo, err := grpc.Dial("submundo:50053", grpc.WithInsecure())
+	connSubmundo, err := grpc.Dial("10.35.168.25:50053", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("Error al conectar al servidor del Submundo: %v", err)
 	}
