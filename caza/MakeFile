@@ -4,8 +4,6 @@ DOCKER_IMAGE = $(SERVICE_NAME)-image
 DOCKER_CONTAINER = $(SERVICE_NAME)-container
 PORT = 50054
 
-docker-$(SERVICE_NAME): build docker-build docker-run
-
 build:
     go build -o $(SERVICE_NAME) .
 
